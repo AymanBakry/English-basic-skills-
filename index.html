@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة المهارات الأساسية للغة الإنجليزية</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --border-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4f46e5, #3b82f6);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .user-badge {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .user-badge button {
+            background: #ef4444;
+            border: none;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        main {
+            flex: 1;
+            padding: 30px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Login Card */
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .login-box {
+            max-width: 420px;
+            margin: 40px auto;
+        }
+
+        .input-group {
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .error-message {
+            color: #dc2626;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .loader {
+            display: none;
+            margin: 15px auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Dashboard Grid */
+        #dashboard {
+            display: none;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-50px);
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.15);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .skill-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* Activities Section */
+        #activitiesSection {
+            display: none;
+        }
+
+        .back-btn {
+            background: #6b7280;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .activity-item {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .activity-btn {
+            background-color: #10b981;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Admin Add Activity Form */
+        .admin-panel {
+            background: #eef2ff;
+            border: 1px dashed var(--primary-color);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-top: 30px;
+        }
+
+        .admin-panel input, .admin-panel select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fa-solid fa-graduation-cap"></i> بوابة المهارات الأساسية - English Skills Portal</h1>
+        <p>منصة تعلم المهارات الأساسية للغة الإنجليزية للطلاب</p>
+        <div class="user-badge" id="userBadge">
+            <span id="userNameText">الطالب</span>
+            <button onclick="logout()"><i class="fa-solid fa-sign-out-alt"></i> خروج</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. شاشة تسجيل الدخول -->
+        <div id="loginCard" class="card login-box">
+            <h2>تسجيل الدخول</h2>
+            <p style="color: #6b7280; font-size: 0.9rem; margin-top: 5px;">أدخل الرقم التعريفي الخاص بك للوصول للأنشطة</p>
+            
+            <div class="input-group">
+                <input type="text" id="studentIdInput" placeholder="أدخل الرقم التعريفي هنا..." autocomplete="off">
+            </div>
+
+            <button class="btn" onclick="loginStudent()">دخول المنصة</button>
+            <div class="loader" id="loginLoader"></div>
+            <div class="error-message" id="loginError">الرقم التعريفي غير صحيح، يرجى المحاولة مرة أخرى.</div>
+        </div>
+
+        <!-- 2. لوحة المهارات الرئيسية -->
+        <div id="dashboard">
+            <div class="card" style="text-align: right;">
+                <h2 id="welcomeText">مرحباً بك!</h2>
+                <p>اختر إحدى المهارات للبدء في حل الأنشطة التفاعلية:</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card" onclick="openSkill('listening')">
+                    <div class="skill-icon"><i class="fa-solid fa-headphones"></i></div>
+                    <div class="skill-title">الاستماع (Listening)</div>
+                    <p style="font-size: 0.85rem; color: #6b7280;">أنشطة واستماعات تفاعلية</p>
+                </div>
+                <div class="skill-card" onclick="openSkill('speaking')">
+                    <div class="skill-icon"><i class="fa-solid fa-comments"></i></div>
+                    <div class="skill-title">المحادثة (Speaking)</div>
+                    <p style="font-size: 0.85rem; color: #6b7280;">تمارين النطق والمحادثة</p>
+                </div>
+                <div class="skill-card" onclick="openSkill('reading')">
+                    <div class="skill-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="skill-title">القراءة (Reading)</div>
+                    <p style="font-size: 0.85rem; color: #6b7280;">قطع ومفردات واستيعاب</p>
+                </div>
+                <div class="skill-card" onclick="openSkill('writing')">
+                    <div class="skill-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                    <div class="skill-title">الكتابة (Writing)</div>
+                    <p style="font-size: 0.85rem; color: #6b7280;">تمارين القواعد والتعبير</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. عرض الأنشطة الخاصة بالمهارة -->
+        <div id="activitiesSection">
+            <button class="back-btn" onclick="showDashboard()"><i class="fa-solid fa-arrow-right"></i> العودة للمهارات</button>
+            <div class="card" style="text-align: right;">
+                <h2 id="selectedSkillTitle">الأنشطة</h2>
+                <div id="activitiesList" style="margin-top: 20px;">
+                    <!-- الأنشطة ستظهر هنا ديناميكياً -->
+                </div>
+            </div>
+
+            <!-- نموذج إضافة نشاط جديد (للمعلم/المسؤول) -->
+            <div class="admin-panel">
+                <h3><i class="fa-solid fa-plus-circle"></i> إضافة نشاط جديد (لوحة التحكم)</h3>
+                <br>
+                <input type="text" id="newActivityTitle" placeholder="عنوان النشاط (مثال: Activity 1: Present Simple)">
+                <input type="url" id="newActivityLink" placeholder="رابط النشاط (LiveWorksheets, Google Forms, Wordwall...)">
+                <button class="btn" style="padding: 10px; font-size: 0.95rem;" onclick="addNewActivity()">حفظ النشاط</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
