@@ -184,7 +184,6 @@
         }
 
         .skill-card:hover {
-            transform: translateY(-50px);
             transform: translateY(-5px);
             border-color: var(--primary-color);
             box-shadow: 0 8px 25px rgba(79, 70, 229, 0.15);
@@ -326,17 +325,18 @@
                 </div>
             </div>
 
-            <!-- نموذج إضافة نشاط جديد (للمعلم/المسؤول) -->
+            <!-- نموذج إضافة نشاط جديد (لوحة التحكم) -->
             <div class="admin-panel">
-                <h3><i class="fa-solid fa-plus-circle"></i> إضافة نشاط جديد (لوحة التحكم)</h3>
+                <h3><i class="fa-solid fa-plus-circle"></i> إضافة نشاط جديد</h3>
                 <br>
                 <input type="text" id="newActivityTitle" placeholder="عنوان النشاط (مثال: Activity 1: Present Simple)">
-                <input type="url" id="newActivityLink" placeholder="رابط النشاط (LiveWorksheets, Google Forms, Wordwall...)">
+                <input type="url" id="newActivityLink" placeholder="رابط النشاط (LiveWorksheets, Google Forms...)">
                 <button class="btn" style="padding: 10px; font-size: 0.95rem;" onclick="addNewActivity()">حفظ النشاط</button>
             </div>
         </div>
     </main>
 
+    <!-- ربط ملف الجافاسكريبت -->
     <script src="script.js"></script>
 </body>
 </html>
